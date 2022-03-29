@@ -36,7 +36,9 @@ const isProd = process.env.NODE_ENV === 'production'
 // ローカルサーバー
 const serve = cb => {
 	browserSync({
-		server: { baseDir: path.dest.root },
+		server: {
+			baseDir: path.dest.root
+		},
 		ghostMode: false,
 		files: [
 			path.dest.html,
@@ -49,46 +51,57 @@ const serve = cb => {
 }
 
 // EJS
-const ejsTask = cb => gulp.src([ path.src.ejs, path.src.ejsExcept ])
-	.pipe( plumber({ errorHandler: notify.onError('<%= error.message %>') }))
-	.pipe( ejs() )
-	.pipe( rename({ extname: '.html' }))
-	.pipe( gulp.dest(path.dest.ejs) )
+const ejsTask = cb => gulp.src([path.src.ejs, path.src.ejsExcept])
+	.pipe(plumber({
+		errorHandler: notify.onError('<%= error.message %>')
+	}))
+	.pipe(ejs())
+	.pipe(rename({
+		extname: '.html'
+	}))
+	.pipe(gulp.dest(path.dest.ejs))
 
 // CSS
 const css = cb => gulp.src(path.src.scss)
-	.pipe( plumber({ errorHandler: notify.onError('<%= error.message %>') }))
-	.pipe( sassGlob() )
-	.pipe( sass({ outputStyle: isProd ? 'compressed' : 'expanded' }))
-	.pipe( autoPrefixer() )
-	.pipe( gulp.dest( path.dest.css ) )
+	.pipe(plumber({
+		errorHandler: notify.onError('<%= error.message %>')
+	}))
+	.pipe(sassGlob())
+	.pipe(sass({
+		outputStyle: isProd ? 'compressed' : 'expanded'
+	}))
+	.pipe(autoPrefixer())
+	.pipe(gulp.dest(path.dest.css))
 
 // JS
 const js = shell.task(`rollup -c${ isProd ? ' --environment NODE_ENV:production' : '' }`)
 
 // 画像圧縮
 const image = cb => gulp.src(path.src.image)
-	.pipe( plumber({ errorHandler: notify.onError('<%= error.message %>') }))
-	.pipe( changed(path.dest.image) )
-	.pipe( imagemin() )
-	.pipe( gulp.dest(path.dest.image) )
+	.pipe(plumber({
+		errorHandler: notify.onError('<%= error.message %>')
+	}))
+	.pipe(changed(path.dest.image))
+	.pipe(imagemin())
+	.pipe(gulp.dest(path.dest.image))
 
 // ファイル監視
 const watchTask = cb => {
-	gulp.watch( path.src.ejs, ejsTask )
-	gulp.watch( path.src.scss, css )
-	gulp.watch( path.src.js, js )
-	gulp.watch( path.src.image, image )
+	gulp.watch(path.src.ejs, ejsTask)
+	gulp.watch(path.src.scss, css)
+	gulp.watch(path.src.js, js)
+	gulp.watch(path.src.image, image)
 }
 
 // docs削除
 const clean = cb => del(path.dest.root + '**/*').then(() => cb)
 
 // ビルド
-const build = gulp.series( clean, ejsTask, css, js, image )
+const build = gulp.series(clean, ejsTask, css, js, image)
 
 // デフォルト（ビルド + サーバー起動 + 監視）
-const defaultTask = gulp.series( build, gulp.parallel( serve, watchTask ))
+const defaultTask = gulp.series(build, gulp.parallel(serve, watchTask))
+
 
 export {
 	build,

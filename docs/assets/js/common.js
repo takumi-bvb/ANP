@@ -9463,9 +9463,9 @@
 
   var $ = window.jQuery.noConflict(true);
 
-  $('#header__link').hover(function () {
-    $(this).toggleClass('active');
-    $(this).next('#header__linkSub').slideToggle();
+  $('#header__link').hover(() => {
+    $(undefined).toggleClass('active');
+    $(undefined).next('#header__linkSub').slideToggle();
   });
 
   // イージング関数
