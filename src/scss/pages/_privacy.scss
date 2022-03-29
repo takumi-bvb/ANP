@@ -1,0 +1,15 @@
+.privacy {
+
+	&__space {
+		padding-top: 92.5px;
+	}
+
+	&__text {
+		font-size: 14px;
+		margin-top: 25px;
+
+		&.last {
+			margin-bottom: 30px;
+		}
+	}
+}

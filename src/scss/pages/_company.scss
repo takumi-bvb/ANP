@@ -1,0 +1,116 @@
+@use "../mixin"as *;
+
+.company {
+
+	&__concept {
+		text-align: center;
+		font-size: 24px;
+		margin-top: 50px;
+
+		@include sp {
+			font-size: 14px;
+			line-height: 2;
+			margin-top: 20px;
+		}
+
+
+		&-blue {
+			color: $blue;
+			font-size: 21px;
+
+			@include sp {
+				font-size: 20px;
+			}
+
+		}
+
+		&-large {
+			font-size: 36px;
+
+			@include sp {
+				font-size: 30px;
+			}
+		}
+
+		&.last {
+			margin-bottom: 67px;
+		}
+
+	}
+
+	&__img {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&.left {
+			width: 100%;
+		}
+
+		&.right {
+			width: 150%;
+		}
+
+		@include sp {
+			display: block;
+
+			&.left {
+				width: 50%;
+				margin: 0 auto;
+			}
+
+			&.right {
+				width: 100%;
+				margin: 0 auto;
+			}
+
+		}
+	}
+
+	&__message {
+		font-size: 21px;
+		margin-bottom: 33px;
+
+		@include sp {
+			font-size: 14px;
+			margin-bottom: 15px;
+		}
+	}
+
+	&__director {
+		font-size: 21px;
+		text-align: right;
+		margin-bottom: 70px;
+
+		@include sp {
+			font-size: 18px;
+		}
+
+		& span {
+			font-size: 34px;
+
+			@include sp {
+				font-size: 24px;
+			}
+
+		}
+	}
+
+	&__info {
+		font-size: 21px;
+
+		@include sp {
+			font-size: 14px;
+		}
+
+	}
+}
+
+hr {
+	margin: 25px 0;
+}
+
+figcaption {
+	text-align: end;
+	font-size: 10px;
+}

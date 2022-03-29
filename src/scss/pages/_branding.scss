@@ -1,0 +1,22 @@
+@use "../mixin"as *;
+
+.branding {
+	&__step {
+		font-size: 21px;
+		line-height: 40px;
+
+		@include sp {
+			font-size: 14px;
+			line-height: 1.75;
+		}
+
+		& span {
+			color: $blue;
+			display: block;
+		}
+
+		&.first {
+			margin-top: 37px;
+		}
+	}
+}

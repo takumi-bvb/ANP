@@ -1,0 +1,15 @@
+@use "../mixin"as *;
+@use "../valiables"as *;
+
+.container {
+	@include pc {
+		width: $pc_width;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	@include sp {
+		padding-left: $sp_padding;
+		padding-right: $sp_padding;
+	}
+}

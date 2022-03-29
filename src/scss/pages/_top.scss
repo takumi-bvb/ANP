@@ -1,0 +1,102 @@
+@use "../mixin"as *;
+
+.top {
+	&__main {
+		margin-top: 40px;
+		width: 100%;
+
+		@include sp {
+			margin-top: 60px;
+		}
+
+		&.responsive {
+			@include sp {
+				margin-top: 20px;
+			}
+		}
+	}
+
+	&__concept {
+		text-align: center;
+		font-size: 24px;
+
+		@include sp {
+			font-size: 14px;
+		}
+	}
+
+	&__business {
+		margin-top: 52px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		@include sp {
+			display: block;
+		}
+
+		&.biz {
+			margin-top: 86px;
+			margin-bottom: 89px;
+		}
+
+		&-left {
+			width: 400px;
+			margin-right: 14px;
+
+			@include sp {
+				width: 80%;
+				margin: 0 auto 10px;
+			}
+
+			&.biz {
+				width: 277px;
+				margin-left: 80px;
+				margin-right: 29px;
+
+				@include sp {
+					width: 50%;
+					margin: 0 auto 10px;
+				}
+
+			}
+		}
+
+		&-right {
+			font-size: 18px;
+			text-align: center;
+
+			@include sp {
+				font-size: 14px;
+				line-height: 1.5;
+			}
+
+		}
+
+		&-textMiddle {
+			font-size: 21px;
+
+			@include sp {
+				font-size: 14px;
+			}
+
+		}
+
+		&-textLarge {
+			font-size: 36px;
+
+			@include sp {
+				font-size: 14px;
+			}
+
+		}
+	}
+
+	&__organization {
+
+		&-img {
+			width: 100%;
+			margin: 43px auto 0;
+		}
+	}
+}

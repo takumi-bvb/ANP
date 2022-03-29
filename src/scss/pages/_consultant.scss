@@ -1,0 +1,15 @@
+@use "../mixin"as *;
+
+.consultant {
+	&__flex {
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		margin-bottom: 100px;
+
+		@include sp {
+			margin-bottom: 50px;
+		}
+	}
+}

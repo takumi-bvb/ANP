@@ -1,0 +1,48 @@
+<%- include('common/_header', {
+	page: 'top',
+	title: 'ホーム',
+	description: 'ページの説明',
+	noindex: false
+}); %>
+<!--  ここにスライダー予定（今は仮） -->
+<ul class="slider">
+	<li><img src="assets/img/AN-main01.png" alt="image01"></li>
+	<li><img src="assets/img/AN-main02.png" alt="image01"></li>
+	<li><img src="assets/img/AN-main03.png" alt="image01"></li>
+</ul>
+<!-- /ここにスライダー予定 -->
+
+<div class="container">
+
+	<div class="top__concept">
+		ベテラン世代がイニシャティブを持って<span class="u-hidden-pc"><br></span>生き生きと働ける社会を目指す<br>ベテラン世代と共に学び、共に働く会社
+	</div>
+
+	<div class="top__business">
+		<div class="top__business-left"><img src="/assets/img/business-logo1.png"></div>
+		<div class="top__business-right">
+			経営課題解決のお手伝い<br>
+			<span class="top__business-textMiddle">よろずシニアコンサルティングファーム</span><br>
+			<span class="top__business-textLarge">ANサポーターズ</span>
+		</div>
+	</div>
+
+	<div class="top__business biz">
+		<div class="top__business-left biz"><img src="/assets/img/business-logo2.png"></div>
+		<div class="top__business-right biz">
+			あなたの経験・知識を元に起業する<br>
+			<span class="top__business-textMiddle">ベテラン世代のための<span class="u-hidden-pc"><br></span>セカンドキャリア養成塾</span><br>
+			<span class="top__business-textLarge">ANビズジム</span>
+		</div>
+	</div>
+
+	<%- include('common/_section', {
+	text: '事業内容'
+}); %>
+
+	<div class="top__organization">
+		<div class="top__organization-img"><img src="/assets/img/organization.png"></div>
+	</div>
+
+</div>
+<%- include('common/_footer'); %>

@@ -1,0 +1,15 @@
+@use "../mixin"as *;
+@use "../valiables"as *;
+
+
+.wrapper {
+	@include sp {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	@include pc {
+		min-width: $pc_width + $pc_padding;
+		overflow: hidden;
+	}
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+	<title><%= title %></title>
+	<meta name="description" content="<%= description %>">
+	<% if (noindex) { %>
+	<meta name="robots" content="noindex">
+	<% } %>
+	<link rel="stylesheet" href="/assets/css/common.css">
+</head>
+
+<body class="page-<%= page %>">
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__inner container">
+				<div class="header__logo">
+					<a href="top.html"><img src="/assets/img/logo.png" alt=""></a>
+				</div>
+				<nav class="header__nav">
+					<div class="header__mass u-hidden-sp">
+						<div class="header__title">ANパートナーズ</div>
+						<div class="header__contact">
+							<div class="header__contact__text">お気軽にお問合せください！</div>
+							<a href="contact.html"><img src="/assets/img/icon_contact.png" alt=""></a>
+						</div>
+					</div>
+					<ul class="header__list">
+						<li><a href="top.html" class="header__link">ホーム</a></li>
+						<li><a href="company.html" class="header__link">会社情報</a></li>
+						<li><a class="header__link" id="header__link">コンサルティング</a></li>
+						<ul class="header__linkSub" id="header__linkSub">
+							<li><a href="feature.html" class="header__link">ANサポーターズの特長</a></li>
+							<li><a href="consultant.html" class="header__link">コンサルタント</a></li>
+							<li><a href="support.html" class="header__link">M&A</a></li>
+							<li><a href="branding.html" class="header__link">ブランディング</a></li>
+						</ul>
+						<li><a class="header__link">セカンドキャリア養成塾</a></li>
+						<ul class="header__linkSub">
+							<li><a href="about.html" class="header__link">AN BIZGYMについて</a></li>
+						</ul>
+						<li><a href="" class="header__link">ブログ シニアのスキル</a></li>
+						<li><a href="contact.html" class="header__link">お問合せ</a></li>
+					</ul>
+				</nav>
+				<div class="header__sp-menu">
+					<button class="sp-menu" id="drawer_btn">
+						<span class="sp-menu__bar-1"></span>
+						<span class="sp-menu__bar-2"></span>
+						<span class="sp-menu__bar-3"></span>
+					</button>
+				</div>
+				<nav class="drawer" id="drawer">
+					<ul class="drawer__list">
+						<li><a href="top.html" class="header__link">ホーム</a></li>
+						<li><a href="company.html" class="header__link">会社情報</a></li>
+						<li><a class="header__link" id="header__link">コンサルティング</a></li>
+						<ul class="header__linkSub" id="header__linkSub">
+							<li><a href="feature.html" class="header__link">ANサポーターズの特長</a></li>
+							<li><a href="consultant.html" class="header__link">コンサルタント</a></li>
+							<li><a href="support.html" class="header__link">M&A</a></li>
+							<li><a href="branding.html" class="header__link">ブランディング</a></li>
+						</ul>
+						<li><a class="header__link">セカンドキャリア養成塾</a></li>
+						<ul class="header__linkSub">
+							<li><a href="about.html" class="header__link">AN BIZGYMについて</a></li>
+						</ul>
+						<li><a href="" class="header__link">ブログ シニアのスキル</a></li>
+						<li><a href="contact.html" class="header__link">お問合せ</a></li>
+					</ul>
+				</nav>
+				<div class="drawer__shade" id="drawer_shade"></div>
+			</div>
+		</header>

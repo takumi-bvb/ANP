@@ -1,0 +1,16 @@
+@use "../mixin"as *;
+
+.slider {
+	margin: 100px auto;
+	width: 80%;
+
+	& img {
+		height: auto;
+		width: 100%;
+	}
+
+	&-prev:before,
+	&-slick-next:before {
+		color: $black;
+	}
+}

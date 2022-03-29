@@ -1,0 +1,43 @@
+@use "../mixin"as *;
+
+.profIcon {
+	width: 180px;
+	margin-top: 50px;
+	margin-right: 35px;
+	margin-left: 35px;
+
+	@include sp {
+		width: 140px;
+		margin-top: 25px;
+		margin-right: 20px;
+		margin-left: 20px;
+	}
+
+
+	&__text {
+		font-size: 12px;
+		text-align: center;
+
+		@include sp {
+			font-size: 10px;
+		}
+
+	}
+
+	&__img {
+
+		& img {
+			width: 180px;
+			height: 180px;
+			border-radius: 50%;
+			object-fit: cover;
+			object-position: top;
+
+			@include sp {
+				width: 140px;
+				height: 140px;
+
+			}
+		}
+	}
+}

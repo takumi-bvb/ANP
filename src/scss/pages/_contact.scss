@@ -1,0 +1,11 @@
+@use "../mixin"as *;
+
+.contact {
+	&__space {
+		padding: 50px 0;
+
+		@include sp {
+			padding: 40px 0;
+		}
+	}
+}

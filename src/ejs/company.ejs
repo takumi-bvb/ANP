@@ -1,0 +1,74 @@
+<%- include('common/_header', {
+	page: 'company',
+	title: 'ホーム',
+	description: 'ページの説明',
+	noindex: false
+}); %>
+
+<!-- ここにページの中身を入れます -->
+
+<%- include('common/_pankuzu', {
+	title: '会社情報',
+	page: 'company',
+}); %>
+
+<div class="container">
+
+	<div class="company__concept">
+		<span class="company__concept-blue"><span class="company__concept-large">Mission</span><br>経営理念</span><br>
+		定年後もベテラン世代がイニシャティブを持って<br>生き生きと働ける社会を作り、<br>日本国の産業がより発展することに貢献します。
+	</div>
+
+	<div class="company__concept">
+		<span class="company__concept-blue"><span class="company__concept-large">Vision</span><br>ビジョン</span><br>
+		コンサルティング業をもって社会に役立つ事業を行い、<br>同時に創業後10年間で500人以上の<span class="u-hidden-pc"><br></span>ベテラン起業家を世に輩出します。
+	</div>
+
+	<div class="company__concept last">
+		<span class="company__concept-blue"><span class="company__concept-large">Policy</span><br>行動指針</span><br>
+		我々は「ベテラン世代」とその人が持つ「経験」<span class="u-hidden-pc"><br></span>を敬い、自らも一緒に社会で活用できる仕組みを考え、あらゆる産業でお役に立てるよう努力します。
+	</div>
+
+	<%- include('common/_section', {
+	text: '代表挨拶'
+}); %>
+	<div class="company__img">
+		<figure class="company__img left">
+			<img src="/assets/img/akaki.png" />
+		</figure>
+		<figure class="company__img right">
+			<img src="/assets/img/copy.png" />
+		</figure>
+	</div>
+	<div class="company__message">
+		私は 60歳になるまで、定年制というものがこんなにも日本社会にとってもったいない事をしているという事に気づきませんでした。欧米では「定年」という言 葉がなくなりつつあり、ましてや「定年」という言葉で仕事や給料を下げることは「ハラスメント」であるとさえ言われるようになっています。しかし、日本では60歳になるとその人の体力、頭脳に関係なく横並びに再雇用という名のものに第一線を外される。こんなもったいないことはないと思います。私達AN パートナーズはそんな経験と知識を持ったベテラン世代の専門家が集まり、企業の経営課題の解決のお手伝いをする仕組みを作りました。と同時に今まさに定年を迎える世代に60歳以降の働き方、そして起業の仕方を教授し、同じ仲間を作っていくセカンドキャリア養成塾を併設いたしました。世の中の流れがどんどん早くなっていく中、ベテラン世代の生きる道は益々狭くなると言う人たちがいます。しかし、私はそうは思いません。ベテラン世代の経験と知識は次の世代の人たちに羅針盤のごとく、より多くの成功事例、失敗事例を教えることができます。経営者のみなさん、我々ベテラン世代を使ってみてください。そしてベテラン世代の人たち、我々と共に学びともに働きませんか?
+	</div>
+	<div class="company__director">代表取締役 <span>赤木 雄</span></div>
+
+	<%- include('common/_section', {
+text: '会社概要'
+}); %>
+
+	<hr>
+	<div class="company__info">
+		◼ 会社名 <span class="u-hidden-pc"><br>&emsp;</span> 株式会社ANパートナーズ<br>&emsp; 代表取締役 赤木 雄<br>&emsp; 取締役 中山 勝義
+		<hr>
+		◼ 所在地 <span class="u-hidden-pc"><br>&emsp;</span>〒102-0074 <span class="u-hidden-pc"><br>&emsp;</span>東京都千代田区九段南1-5-6 <span class="u-hidden-pc"><br>&emsp;</span>りそな九段ビル5FKSフロア
+		<hr>
+		◼ 設立 <span class="u-hidden-pc"><br>&emsp;</span>2021年10月18日
+		<hr>
+		◼ 顧問税理士 <span class="u-hidden-pc"><br>&emsp;</span>横浜みなと税理士事務所 税理士 藤崎仁
+		<hr>
+		◼ 事業内容<br>
+		⚫ ANサポーターズ <span class="u-hidden-pc"><br>&emsp;</span>よろずシニアコンサルティングファーム<br>
+		⚫ ANビズジム <span class="u-hidden-pc"><br>&emsp;</span>ベテラン世代のためのセカンドキャリア養成塾
+		<hr>
+		◼ アクセス
+		<figure>
+			<img src="/assets/img/map.png">
+			<figcaption>地図データ ©2022 Google</figcaption>
+		</figure>
+	</div>
+
+</div>
+<%- include('common/_footer'); %>
