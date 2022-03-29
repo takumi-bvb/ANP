@@ -10,8 +10,4 @@
     d.getElementById('drawer_shade').addEventListener('click', toggleDrawer);
   })(document);
 
-  console.log("saa");
-  // import './modules/slider'
-  // import './modules/scroll'
-
 })();
