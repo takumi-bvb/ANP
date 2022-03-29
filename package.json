@@ -42,6 +42,7 @@
     "standard": "^16.0.4"
   },
   "dependencies": {
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "slick-carousel": "^1.8.1"
   }
 }
