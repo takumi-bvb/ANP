@@ -207,6 +207,9 @@ ul {
     right: 85px;
   }
 }
+.backTop a {
+  color: #000000;
+}
 
 .bar {
   background: #22388D;
@@ -648,8 +651,8 @@ ul {
   .profIcon {
     width: 140px;
     margin-top: 25px;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: 0px;
+    margin-left: 0px;
   }
 }
 .profIcon__text {
@@ -660,6 +663,15 @@ ul {
   .profIcon__text {
     font-size: 10px;
   }
+}
+.profIcon__img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
 }
 .profIcon__img img {
   width: 180px;
@@ -890,6 +902,7 @@ figcaption {
 @media only screen and (max-width: 767px) {
   .consultant__flex {
     margin-bottom: 50px;
+    justify-content: space-around;
   }
 }
 
