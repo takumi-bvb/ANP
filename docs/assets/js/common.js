@@ -5036,14 +5036,456 @@
   });
   Swiper.use([Resize, Observer]);
 
-  new Swiper('.swiper', {
-    // Optional parameters
-    direction: 'vertical',
-    loop: true,
-    // If we need pagination
-    pagination: {
-      el: '.swiper-pagination'
+  /* eslint no-underscore-dangle: "off" */
+  function Autoplay(_ref) {
+    let {
+      swiper,
+      extendParams,
+      on,
+      emit
+    } = _ref;
+    let timeout;
+    swiper.autoplay = {
+      running: false,
+      paused: false
+    };
+    extendParams({
+      autoplay: {
+        enabled: false,
+        delay: 3000,
+        waitForTransition: true,
+        disableOnInteraction: true,
+        stopOnLastSlide: false,
+        reverseDirection: false,
+        pauseOnMouseEnter: false
+      }
+    });
+
+    function run() {
+      const $activeSlideEl = swiper.slides.eq(swiper.activeIndex);
+      let delay = swiper.params.autoplay.delay;
+
+      if ($activeSlideEl.attr('data-swiper-autoplay')) {
+        delay = $activeSlideEl.attr('data-swiper-autoplay') || swiper.params.autoplay.delay;
+      }
+
+      clearTimeout(timeout);
+      timeout = nextTick(() => {
+        let autoplayResult;
+
+        if (swiper.params.autoplay.reverseDirection) {
+          if (swiper.params.loop) {
+            swiper.loopFix();
+            autoplayResult = swiper.slidePrev(swiper.params.speed, true, true);
+            emit('autoplay');
+          } else if (!swiper.isBeginning) {
+            autoplayResult = swiper.slidePrev(swiper.params.speed, true, true);
+            emit('autoplay');
+          } else if (!swiper.params.autoplay.stopOnLastSlide) {
+            autoplayResult = swiper.slideTo(swiper.slides.length - 1, swiper.params.speed, true, true);
+            emit('autoplay');
+          } else {
+            stop();
+          }
+        } else if (swiper.params.loop) {
+          swiper.loopFix();
+          autoplayResult = swiper.slideNext(swiper.params.speed, true, true);
+          emit('autoplay');
+        } else if (!swiper.isEnd) {
+          autoplayResult = swiper.slideNext(swiper.params.speed, true, true);
+          emit('autoplay');
+        } else if (!swiper.params.autoplay.stopOnLastSlide) {
+          autoplayResult = swiper.slideTo(0, swiper.params.speed, true, true);
+          emit('autoplay');
+        } else {
+          stop();
+        }
+
+        if (swiper.params.cssMode && swiper.autoplay.running) run();else if (autoplayResult === false) {
+          run();
+        }
+      }, delay);
     }
+
+    function start() {
+      if (typeof timeout !== 'undefined') return false;
+      if (swiper.autoplay.running) return false;
+      swiper.autoplay.running = true;
+      emit('autoplayStart');
+      run();
+      return true;
+    }
+
+    function stop() {
+      if (!swiper.autoplay.running) return false;
+      if (typeof timeout === 'undefined') return false;
+
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = undefined;
+      }
+
+      swiper.autoplay.running = false;
+      emit('autoplayStop');
+      return true;
+    }
+
+    function pause(speed) {
+      if (!swiper.autoplay.running) return;
+      if (swiper.autoplay.paused) return;
+      if (timeout) clearTimeout(timeout);
+      swiper.autoplay.paused = true;
+
+      if (speed === 0 || !swiper.params.autoplay.waitForTransition) {
+        swiper.autoplay.paused = false;
+        run();
+      } else {
+        ['transitionend', 'webkitTransitionEnd'].forEach(event => {
+          swiper.$wrapperEl[0].addEventListener(event, onTransitionEnd);
+        });
+      }
+    }
+
+    function onVisibilityChange() {
+      const document = getDocument();
+
+      if (document.visibilityState === 'hidden' && swiper.autoplay.running) {
+        pause();
+      }
+
+      if (document.visibilityState === 'visible' && swiper.autoplay.paused) {
+        run();
+        swiper.autoplay.paused = false;
+      }
+    }
+
+    function onTransitionEnd(e) {
+      if (!swiper || swiper.destroyed || !swiper.$wrapperEl) return;
+      if (e.target !== swiper.$wrapperEl[0]) return;
+      ['transitionend', 'webkitTransitionEnd'].forEach(event => {
+        swiper.$wrapperEl[0].removeEventListener(event, onTransitionEnd);
+      });
+      swiper.autoplay.paused = false;
+
+      if (!swiper.autoplay.running) {
+        stop();
+      } else {
+        run();
+      }
+    }
+
+    function onMouseEnter() {
+      if (swiper.params.autoplay.disableOnInteraction) {
+        stop();
+      } else {
+        emit('autoplayPause');
+        pause();
+      }
+
+      ['transitionend', 'webkitTransitionEnd'].forEach(event => {
+        swiper.$wrapperEl[0].removeEventListener(event, onTransitionEnd);
+      });
+    }
+
+    function onMouseLeave() {
+      if (swiper.params.autoplay.disableOnInteraction) {
+        return;
+      }
+
+      swiper.autoplay.paused = false;
+      emit('autoplayResume');
+      run();
+    }
+
+    function attachMouseEvents() {
+      if (swiper.params.autoplay.pauseOnMouseEnter) {
+        swiper.$el.on('mouseenter', onMouseEnter);
+        swiper.$el.on('mouseleave', onMouseLeave);
+      }
+    }
+
+    function detachMouseEvents() {
+      swiper.$el.off('mouseenter', onMouseEnter);
+      swiper.$el.off('mouseleave', onMouseLeave);
+    }
+
+    on('init', () => {
+      if (swiper.params.autoplay.enabled) {
+        start();
+        const document = getDocument();
+        document.addEventListener('visibilitychange', onVisibilityChange);
+        attachMouseEvents();
+      }
+    });
+    on('beforeTransitionStart', (_s, speed, internal) => {
+      if (swiper.autoplay.running) {
+        if (internal || !swiper.params.autoplay.disableOnInteraction) {
+          swiper.autoplay.pause(speed);
+        } else {
+          stop();
+        }
+      }
+    });
+    on('sliderFirstMove', () => {
+      if (swiper.autoplay.running) {
+        if (swiper.params.autoplay.disableOnInteraction) {
+          stop();
+        } else {
+          pause();
+        }
+      }
+    });
+    on('touchEnd', () => {
+      if (swiper.params.cssMode && swiper.autoplay.paused && !swiper.params.autoplay.disableOnInteraction) {
+        run();
+      }
+    });
+    on('destroy', () => {
+      detachMouseEvents();
+
+      if (swiper.autoplay.running) {
+        stop();
+      }
+
+      const document = getDocument();
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+    });
+    Object.assign(swiper.autoplay, {
+      pause,
+      run,
+      start,
+      stop
+    });
+  }
+
+  function Thumb(_ref) {
+    let {
+      swiper,
+      extendParams,
+      on
+    } = _ref;
+    extendParams({
+      thumbs: {
+        swiper: null,
+        multipleActiveThumbs: true,
+        autoScrollOffset: 0,
+        slideThumbActiveClass: 'swiper-slide-thumb-active',
+        thumbsContainerClass: 'swiper-thumbs'
+      }
+    });
+    let initialized = false;
+    let swiperCreated = false;
+    swiper.thumbs = {
+      swiper: null
+    };
+
+    function onThumbClick() {
+      const thumbsSwiper = swiper.thumbs.swiper;
+      if (!thumbsSwiper) return;
+      const clickedIndex = thumbsSwiper.clickedIndex;
+      const clickedSlide = thumbsSwiper.clickedSlide;
+      if (clickedSlide && $(clickedSlide).hasClass(swiper.params.thumbs.slideThumbActiveClass)) return;
+      if (typeof clickedIndex === 'undefined' || clickedIndex === null) return;
+      let slideToIndex;
+
+      if (thumbsSwiper.params.loop) {
+        slideToIndex = parseInt($(thumbsSwiper.clickedSlide).attr('data-swiper-slide-index'), 10);
+      } else {
+        slideToIndex = clickedIndex;
+      }
+
+      if (swiper.params.loop) {
+        let currentIndex = swiper.activeIndex;
+
+        if (swiper.slides.eq(currentIndex).hasClass(swiper.params.slideDuplicateClass)) {
+          swiper.loopFix(); // eslint-disable-next-line
+
+          swiper._clientLeft = swiper.$wrapperEl[0].clientLeft;
+          currentIndex = swiper.activeIndex;
+        }
+
+        const prevIndex = swiper.slides.eq(currentIndex).prevAll(`[data-swiper-slide-index="${slideToIndex}"]`).eq(0).index();
+        const nextIndex = swiper.slides.eq(currentIndex).nextAll(`[data-swiper-slide-index="${slideToIndex}"]`).eq(0).index();
+        if (typeof prevIndex === 'undefined') slideToIndex = nextIndex;else if (typeof nextIndex === 'undefined') slideToIndex = prevIndex;else if (nextIndex - currentIndex < currentIndex - prevIndex) slideToIndex = nextIndex;else slideToIndex = prevIndex;
+      }
+
+      swiper.slideTo(slideToIndex);
+    }
+
+    function init() {
+      const {
+        thumbs: thumbsParams
+      } = swiper.params;
+      if (initialized) return false;
+      initialized = true;
+      const SwiperClass = swiper.constructor;
+
+      if (thumbsParams.swiper instanceof SwiperClass) {
+        swiper.thumbs.swiper = thumbsParams.swiper;
+        Object.assign(swiper.thumbs.swiper.originalParams, {
+          watchSlidesProgress: true,
+          slideToClickedSlide: false
+        });
+        Object.assign(swiper.thumbs.swiper.params, {
+          watchSlidesProgress: true,
+          slideToClickedSlide: false
+        });
+      } else if (isObject(thumbsParams.swiper)) {
+        const thumbsSwiperParams = Object.assign({}, thumbsParams.swiper);
+        Object.assign(thumbsSwiperParams, {
+          watchSlidesProgress: true,
+          slideToClickedSlide: false
+        });
+        swiper.thumbs.swiper = new SwiperClass(thumbsSwiperParams);
+        swiperCreated = true;
+      }
+
+      swiper.thumbs.swiper.$el.addClass(swiper.params.thumbs.thumbsContainerClass);
+      swiper.thumbs.swiper.on('tap', onThumbClick);
+      return true;
+    }
+
+    function update(initial) {
+      const thumbsSwiper = swiper.thumbs.swiper;
+      if (!thumbsSwiper) return;
+      const slidesPerView = thumbsSwiper.params.slidesPerView === 'auto' ? thumbsSwiper.slidesPerViewDynamic() : thumbsSwiper.params.slidesPerView;
+      const autoScrollOffset = swiper.params.thumbs.autoScrollOffset;
+      const useOffset = autoScrollOffset && !thumbsSwiper.params.loop;
+
+      if (swiper.realIndex !== thumbsSwiper.realIndex || useOffset) {
+        let currentThumbsIndex = thumbsSwiper.activeIndex;
+        let newThumbsIndex;
+        let direction;
+
+        if (thumbsSwiper.params.loop) {
+          if (thumbsSwiper.slides.eq(currentThumbsIndex).hasClass(thumbsSwiper.params.slideDuplicateClass)) {
+            thumbsSwiper.loopFix(); // eslint-disable-next-line
+
+            thumbsSwiper._clientLeft = thumbsSwiper.$wrapperEl[0].clientLeft;
+            currentThumbsIndex = thumbsSwiper.activeIndex;
+          } // Find actual thumbs index to slide to
+
+
+          const prevThumbsIndex = thumbsSwiper.slides.eq(currentThumbsIndex).prevAll(`[data-swiper-slide-index="${swiper.realIndex}"]`).eq(0).index();
+          const nextThumbsIndex = thumbsSwiper.slides.eq(currentThumbsIndex).nextAll(`[data-swiper-slide-index="${swiper.realIndex}"]`).eq(0).index();
+
+          if (typeof prevThumbsIndex === 'undefined') {
+            newThumbsIndex = nextThumbsIndex;
+          } else if (typeof nextThumbsIndex === 'undefined') {
+            newThumbsIndex = prevThumbsIndex;
+          } else if (nextThumbsIndex - currentThumbsIndex === currentThumbsIndex - prevThumbsIndex) {
+            newThumbsIndex = thumbsSwiper.params.slidesPerGroup > 1 ? nextThumbsIndex : currentThumbsIndex;
+          } else if (nextThumbsIndex - currentThumbsIndex < currentThumbsIndex - prevThumbsIndex) {
+            newThumbsIndex = nextThumbsIndex;
+          } else {
+            newThumbsIndex = prevThumbsIndex;
+          }
+
+          direction = swiper.activeIndex > swiper.previousIndex ? 'next' : 'prev';
+        } else {
+          newThumbsIndex = swiper.realIndex;
+          direction = newThumbsIndex > swiper.previousIndex ? 'next' : 'prev';
+        }
+
+        if (useOffset) {
+          newThumbsIndex += direction === 'next' ? autoScrollOffset : -1 * autoScrollOffset;
+        }
+
+        if (thumbsSwiper.visibleSlidesIndexes && thumbsSwiper.visibleSlidesIndexes.indexOf(newThumbsIndex) < 0) {
+          if (thumbsSwiper.params.centeredSlides) {
+            if (newThumbsIndex > currentThumbsIndex) {
+              newThumbsIndex = newThumbsIndex - Math.floor(slidesPerView / 2) + 1;
+            } else {
+              newThumbsIndex = newThumbsIndex + Math.floor(slidesPerView / 2) - 1;
+            }
+          } else if (newThumbsIndex > currentThumbsIndex && thumbsSwiper.params.slidesPerGroup === 1) ;
+
+          thumbsSwiper.slideTo(newThumbsIndex, initial ? 0 : undefined);
+        }
+      } // Activate thumbs
+
+
+      let thumbsToActivate = 1;
+      const thumbActiveClass = swiper.params.thumbs.slideThumbActiveClass;
+
+      if (swiper.params.slidesPerView > 1 && !swiper.params.centeredSlides) {
+        thumbsToActivate = swiper.params.slidesPerView;
+      }
+
+      if (!swiper.params.thumbs.multipleActiveThumbs) {
+        thumbsToActivate = 1;
+      }
+
+      thumbsToActivate = Math.floor(thumbsToActivate);
+      thumbsSwiper.slides.removeClass(thumbActiveClass);
+
+      if (thumbsSwiper.params.loop || thumbsSwiper.params.virtual && thumbsSwiper.params.virtual.enabled) {
+        for (let i = 0; i < thumbsToActivate; i += 1) {
+          thumbsSwiper.$wrapperEl.children(`[data-swiper-slide-index="${swiper.realIndex + i}"]`).addClass(thumbActiveClass);
+        }
+      } else {
+        for (let i = 0; i < thumbsToActivate; i += 1) {
+          thumbsSwiper.slides.eq(swiper.realIndex + i).addClass(thumbActiveClass);
+        }
+      }
+    }
+
+    on('beforeInit', () => {
+      const {
+        thumbs
+      } = swiper.params;
+      if (!thumbs || !thumbs.swiper) return;
+      init();
+      update(true);
+    });
+    on('slideChange update resize observerUpdate', () => {
+      if (!swiper.thumbs.swiper) return;
+      update();
+    });
+    on('setTransition', (_s, duration) => {
+      const thumbsSwiper = swiper.thumbs.swiper;
+      if (!thumbsSwiper) return;
+      thumbsSwiper.setTransition(duration);
+    });
+    on('beforeDestroy', () => {
+      const thumbsSwiper = swiper.thumbs.swiper;
+      if (!thumbsSwiper) return;
+
+      if (swiperCreated && thumbsSwiper) {
+        thumbsSwiper.destroy();
+      }
+    });
+    Object.assign(swiper.thumbs, {
+      init,
+      update
+    });
+  }
+
+  // core version + navigation, pagination modules:
+  const swiper = new Swiper(".mySwiper", {
+    loop: true,
+    speed: 1000,
+    spaceBetween: 10,
+    slidesPerView: 3,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    modules: [Autoplay]
+  });
+  new Swiper(".mySwiper2", {
+    loop: true,
+    speed: 1000,
+    spaceBetween: 10,
+    thumbs: {
+      swiper: swiper
+    },
+    modules: [Thumb],
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    modules: [Autoplay]
   });
 
 })();

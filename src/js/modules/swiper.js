@@ -1,18 +1,32 @@
+// core version + navigation, pagination modules:
 import Swiper, {
-  Navigation
+  Thumbs,
+  Autoplay,
 } from 'swiper';
 
 const swiper = new Swiper(".mySwiper", {
+  loop: true,
+  speed: 1000,
   spaceBetween: 10,
-  slidesPerView: 4
+  slidesPerView: 3,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  },
+  modules: [Autoplay],
 });
 
 const swiper2 = new Swiper(".mySwiper2", {
+  loop: true,
+  speed: 1000,
+  spaceBetween: 10,
   thumbs: {
-    swiper: swiper
+    swiper: swiper,
   },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev"
-  }
+  modules: [Thumbs],
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  },
+  modules: [Autoplay],
 });
