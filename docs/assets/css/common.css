@@ -1209,6 +1209,8 @@ ul {
     margin-top: 0;
     position: fixed;
     margin-bottom: 0;
+    box-shadow: 0px 0px 3px #999999;
+    background-color: rgba(255, 255, 255, 0.7);
   }
 }
 .header__logo {
@@ -1454,6 +1456,17 @@ ul {
     font-size: 10px;
   }
 }
+.profIcon__text.blue {
+  color: #FFFFFF;
+  font-size: 24px;
+  padding-top: 45px;
+}
+@media only screen and (max-width: 767px) {
+  .profIcon__text.blue {
+    font-size: 18px;
+    padding-top: 35px;
+  }
+}
 .profIcon__img {
   width: 180px;
   height: 180px;
@@ -1476,6 +1489,17 @@ ul {
   .profIcon__img img {
     width: 140px;
     height: 140px;
+  }
+}
+.profIcon__img.blue {
+  background-color: #22388D;
+  margin-top: 45px;
+}
+@media only screen and (max-width: 767px) {
+  .profIcon__img.blue {
+    width: 140px;
+    height: 140px;
+    margin-top: 38px;
   }
 }
 
