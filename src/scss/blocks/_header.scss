@@ -62,7 +62,7 @@
 		}
 
 		& li {
-			padding-right: 30px;
+			padding: 20px 30px 20px 0;
 		}
 
 		& li:last-child {
@@ -105,7 +105,7 @@
 		position: absolute;
 		overflow: hidden;
 		top: 40px;
-		left: 23.3%;
+		left: 23.5%;
 		min-height: 0;
 		height: 0;
 		background-color: $blue;
@@ -118,23 +118,30 @@
 		}
 
 		&.active {
-			height: 100%;
-			min-height: 200px;
+			min-height: 140px;
 		}
 	}
 
 	&__linkSub2 {
-		display: none;
 		position: absolute;
+		overflow: hidden;
 		top: 40px;
-		left: 50%;
+		left: 42.6%;
+		min-height: 0;
+		height: 0;
 		background-color: $blue;
+		transition: min-height 0.5s;
 
 		& li:last-child {
 			display: block;
 			text-align: center;
-			padding: 0 10px;
+			padding: 5px 15px;
 		}
+
+		&.active {
+			min-height: 40px;
+		}
+
 	}
 
 	&__link {
