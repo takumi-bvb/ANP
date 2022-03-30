@@ -91,6 +91,11 @@
 			transform-origin: right top;
 			transform: scale(0, 1);
 			transition: transform .3s;
+
+			@include sp {
+				content: none;
+			}
+
 		}
 
 		&:hover::before {
@@ -101,6 +106,7 @@
 		& a {
 			color: $white;
 		}
+
 	}
 
 	&__linkSub {
@@ -113,14 +119,30 @@
 		background-color: $blue;
 		transition: min-height 0.5s;
 
+		@include sp {
+			position: unset;
+			transition-duration: .3s;
+		}
+
 		& li {
 			display: block;
 			text-align: center;
 			padding: 5px 10px;
+
+			@include sp {
+				font-size: 14px;
+				padding: 0;
+			}
 		}
 
 		&.active {
 			min-height: 140px;
+		}
+
+		&.is-open {
+			@include sp {
+				min-height: 140px;
+			}
 		}
 	}
 
@@ -138,11 +160,29 @@
 			display: block;
 			text-align: center;
 			padding: 5px 15px;
+
+			@include sp {
+				font-size: 14px;
+				padding: 0;
+			}
+
 		}
 
 		&.active {
 			min-height: 40px;
 		}
+
+		@include sp {
+			position: unset;
+			transition-duration: .3s;
+		}
+
+		&.is-open {
+			@include sp {
+				min-height: 40px;
+			}
+		}
+
 
 	}
 

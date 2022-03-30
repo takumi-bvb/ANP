@@ -1,4 +1,5 @@
 import './modules/drawer'
 import './modules/scroll'
 import './modules/hover'
+import './modules/acordion'
 import './modules/swiper'
