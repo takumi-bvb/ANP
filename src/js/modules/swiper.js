@@ -1,5 +1,5 @@
 import Swiper, {
-  // Pagination
+  Navigation
 } from 'swiper';
 
 const swiper = new Swiper(".mySwiper", {
