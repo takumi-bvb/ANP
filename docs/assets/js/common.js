@@ -5466,7 +5466,7 @@
     loop: true,
     speed: 1000,
     spaceBetween: 10,
-    slidesPerView: 3,
+    slidesPerView: 4,
     autoplay: {
       delay: 5000,
       disableOnInteraction: false
