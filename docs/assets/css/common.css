@@ -1304,6 +1304,7 @@ ul {
   height: 0;
   background-color: #22388D;
   transition: min-height 0.5s;
+  z-index: 1;
 }
 @media only screen and (max-width: 767px) {
   .header__linkSub {
@@ -1339,6 +1340,7 @@ ul {
   height: 0;
   background-color: #22388D;
   transition: min-height 0.5s;
+  z-index: 1;
 }
 .header__linkSub2 li:last-child {
   display: block;
@@ -1674,9 +1676,20 @@ ul {
 }
 
 .about__video {
-  width: 100%;
-  height: 560px;
+  position: relative;
+  padding-bottom: 56.25%;
+  /*アスペクト比 16:9の場合の縦幅*/
+  height: 0;
+  overflow: hidden;
   margin: 20px auto 0;
+}
+.about__video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 .about__img {
   margin-top: 40px;
@@ -2107,6 +2120,12 @@ figcaption {
 .top__business.biz {
   margin-top: 86px;
   margin-bottom: 89px;
+}
+@media only screen and (max-width: 767px) {
+  .top__business.biz {
+    margin-top: 43px;
+    margin-bottom: 45px;
+  }
 }
 .top__business-left {
   width: 400px;

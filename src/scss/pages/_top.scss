@@ -38,6 +38,11 @@
 		&.biz {
 			margin-top: 86px;
 			margin-bottom: 89px;
+
+			@include sp {
+				margin-top: 43px;
+				margin-bottom: 45px;
+			}
 		}
 
 		&-left {

@@ -118,6 +118,7 @@
 		height: 0;
 		background-color: $blue;
 		transition: min-height 0.5s;
+		z-index: 1;
 
 		@include sp {
 			position: unset;
@@ -155,6 +156,7 @@
 		height: 0;
 		background-color: $blue;
 		transition: min-height 0.5s;
+		z-index: 1;
 
 		& li:last-child {
 			display: block;
