@@ -14,4 +14,23 @@
 
 		}
 	}
+
+	&__qa {
+		margin-bottom: 45px;
+		font-size: 18px;
+
+		@include sp {
+			font-size: 14px;
+		}
+
+		& span {
+			display: block;
+			color: $blue;
+		}
+
+		&.first {
+			margin-top: 40px;
+		}
+
+	}
 }

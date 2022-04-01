@@ -1,3 +1,4 @@
+@use "../mixin"as *;
 // ハンバーガーメニューのボタン
 
 .sp-menu {
@@ -9,7 +10,7 @@
 	height: 50px;
 	padding: 0;
 	border: none;
-	background-color: rgba(#fff, .5);
+	background-color: rgba(#fff, 0);
 	font-family: inherit;
 	line-height: 1;
 	outline: none;
@@ -35,6 +36,7 @@
 
 	.is-drawer-active & {
 		transform: translateY(-4px) rotate(45deg) scaleX(1.4142);
+		background-color: $white;
 	}
 }
 
@@ -56,5 +58,6 @@
 
 	.is-drawer-active & {
 		transform: translateY(5px) rotate(-45deg) scaleX(1.4142);
+		background-color: $white;
 	}
 }

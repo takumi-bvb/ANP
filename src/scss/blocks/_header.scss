@@ -6,7 +6,7 @@
 		display: flex;
 		align-items: flex-end;
 		margin-top: 21.7px;
-		margin-bottom: 150px;
+		margin-bottom: 20px;
 
 
 		@include sp {
@@ -64,7 +64,7 @@
 		}
 
 		& li {
-			padding: 20px 30px 20px 0;
+			padding: 20px 20px 20px 0;
 		}
 
 		& li:last-child {
@@ -113,7 +113,7 @@
 		position: absolute;
 		overflow: hidden;
 		top: 40px;
-		left: 23.5%;
+		left: 19.7%;
 		min-height: 0;
 		height: 0;
 		background-color: $blue;
@@ -150,7 +150,7 @@
 		position: absolute;
 		overflow: hidden;
 		top: 40px;
-		left: 42.6%;
+		left: 37.5%;
 		min-height: 0;
 		height: 0;
 		background-color: $blue;

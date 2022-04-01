@@ -9,12 +9,12 @@
 	width: 95%;
 	border-radius: 20px;
 	font-size: 21px;
+	z-index: -2;
 
 	@include sp {
 		font-size: 12px;
 		width: 85%;
 		margin: 30px auto 0;
-		z-index: -1;
 
 	}
 
