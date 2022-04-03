@@ -1134,10 +1134,10 @@ ul {
 .footer__list {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   font-size: 14px;
-  margin-bottom: 44px;
+  margin-bottom: 120px;
 }
 @media only screen and (max-width: 767px) {
   .footer__list {
@@ -1152,13 +1152,12 @@ ul {
 }
 .footer__link, .footer__linkSub {
   color: #FFFFFF;
-  position: relative;
 }
 .footer__link a, .footer__linkSub a {
   color: #FFFFFF;
 }
 .footer__linkSub {
-  display: none;
+  font-size: 12px;
 }
 .footer__company {
   text-align: center;
