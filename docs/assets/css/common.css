@@ -962,7 +962,7 @@ ul {
 }
 
 .bar {
-  background: #22388D;
+  background: #11589C;
   color: #FFFFFF;
   text-align: center;
   margin: 60px auto 0;
@@ -982,7 +982,7 @@ ul {
 .bar::before {
   position: absolute;
   content: "";
-  background: #22388D;
+  background: #11589C;
   border-radius: 50%;
   width: 31.25px;
   height: 31.25px;
@@ -1000,7 +1000,7 @@ ul {
 .bar::after {
   position: absolute;
   content: "";
-  background: #22388D;
+  background: #11589C;
   border-radius: 50%;
   width: 31.25px;
   height: 31.25px;
@@ -1045,7 +1045,7 @@ ul {
 .btn-border {
   border: 2px solid #000000;
   border-radius: 0;
-  background: #22388D;
+  background: #11589C;
   box-shadow: 4px 4px 0 #000000;
 }
 .btn-border:hover {
@@ -1068,7 +1068,7 @@ ul {
   right: 0;
   bottom: 0;
   width: 100%;
-  background-color: #22388D;
+  background-color: #11589C;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   opacity: 0;
@@ -1118,7 +1118,7 @@ ul {
 }
 
 .footer__inner {
-  background-color: #22388D;
+  background-color: #11589C;
   margin-top: 70px;
   padding-top: 43px;
   padding-bottom: 170px;
@@ -1249,7 +1249,7 @@ ul {
   height: 40px;
   max-height: 40px;
   padding: 12px 58px;
-  background-color: #22388D;
+  background-color: #11589C;
   border-radius: 19.81px;
 }
 @media only screen and (max-width: 767px) {
@@ -1301,7 +1301,7 @@ ul {
   left: 19.7%;
   min-height: 0;
   height: 0;
-  background-color: #22388D;
+  background-color: #11589C;
   transition: min-height 0.5s;
   z-index: 1;
 }
@@ -1337,7 +1337,7 @@ ul {
   left: 37.5%;
   min-height: 0;
   height: 0;
-  background-color: #22388D;
+  background-color: #11589C;
   transition: min-height 0.5s;
   z-index: 1;
 }
@@ -1382,7 +1382,7 @@ ul {
   margin-bottom: 10px;
 }
 .header__contact__text {
-  color: #22388D;
+  color: #11589C;
   font-size: 14px;
   text-align: center;
   position: relative;
@@ -1392,7 +1392,7 @@ ul {
   display: block;
   width: 20px;
   height: 1.5px;
-  background-color: #22388D;
+  background-color: #11589C;
   position: absolute;
   top: 10px;
   left: 12px;
@@ -1403,7 +1403,7 @@ ul {
   display: block;
   width: 20px;
   height: 1.5px;
-  background-color: #22388D;
+  background-color: #11589C;
   position: absolute;
   top: 10px;
   right: 12px;
@@ -1537,7 +1537,7 @@ ul {
   }
 }
 .profIcon__img.blue {
-  background-color: #22388D;
+  background-color: #11589C;
   margin-top: 45px;
 }
 @media only screen and (max-width: 767px) {
@@ -1549,7 +1549,7 @@ ul {
 }
 
 .section {
-  color: #22388D;
+  color: #11589C;
   font-size: 24px;
   font-weight: bold;
 }
@@ -1705,7 +1705,7 @@ ul {
   }
 }
 .branding__step span {
-  color: #22388D;
+  color: #11589C;
   display: block;
 }
 .branding__step.first {
@@ -1725,7 +1725,7 @@ ul {
   }
 }
 .company__concept-blue {
-  color: #22388D;
+  color: #11589C;
   font-size: 21px;
 }
 @media only screen and (max-width: 767px) {
@@ -1838,7 +1838,7 @@ figcaption {
 }
 .consultant__qa span {
   display: block;
-  color: #22388D;
+  color: #11589C;
 }
 .consultant__qa.first {
   margin-top: 40px;
@@ -1854,7 +1854,7 @@ figcaption {
 }
 
 .feature__suggestion {
-  color: #22388D;
+  color: #11589C;
   font-size: 21px;
 }
 @media only screen and (max-width: 767px) {
@@ -1921,7 +1921,7 @@ figcaption {
   }
 }
 .feature__shikaku {
-  background: #22388D;
+  background: #11589C;
   color: #FFFFFF;
   width: 127px;
   height: 127px;
@@ -2022,7 +2022,7 @@ figcaption {
 }
 .support__text span {
   font-size: 24px;
-  color: #22388D;
+  color: #11589C;
   display: block;
 }
 @media only screen and (max-width: 767px) {
