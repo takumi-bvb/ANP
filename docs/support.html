@@ -9,7 +9,36 @@
 	<meta name="description" content="M&amp;A">
 	
 	<link rel="stylesheet" href="/assets/css/common.css">
-	<script type="text/javascript" src="//code.typesquare.com/static/ZDbTe4IzCko%253D/ts106f.js" charset="utf-8"></script>
+	<script>
+		(function (d) {
+			var config = {
+					kitId: 'qmu6aii',
+					scriptTimeout: 3000,
+					async: true
+				},
+				h = d.documentElement,
+				t = setTimeout(function () {
+					h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+				}, config.scriptTimeout),
+				tk = d.createElement("script"),
+				f = false,
+				s = d.getElementsByTagName("script")[0],
+				a;
+			h.className += " wf-loading";
+			tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+			tk.async = true;
+			tk.onload = tk.onreadystatechange = function () {
+				a = this.readyState;
+				if (f || a && a != "complete" && a != "loaded") return;
+				f = true;
+				clearTimeout(t);
+				try {
+					Typekit.load(config)
+				} catch (e) {}
+			};
+			s.parentNode.insertBefore(tk, s)
+		})(document);
+	</script>
 </head>
 
 <body class="page-support">
@@ -39,7 +68,7 @@
 						</ul>
 						<li id="header__link-s"><a class="header__link">セカンドキャリア養成塾</a></li>
 						<ul class="header__linkSub2" id="header__link-s">
-							<li id="header__link-s"><a href="about.html" class="header__link">AN BIZGYMについて</a></li>
+							<li id="header__link-s"><a href="about.html" class="header__link">ANBIZGYMについて</a></li>
 						</ul>
 						<li><a href="https://www.ansupporters.com/seminar" class="header__link" target="_blank">セミナー</a></li>
 						<li><a href="https://www.anbizgym.com/blog" class="header__link">ブログ シニアのスキル</a></li>
@@ -92,8 +121,8 @@
 <div class="container">
 
 	<div class="support__text first">
-		<span>1.中小企業庁M&A支援機関登録済（No.XXXXXXX）</span>
-		ANサポーターズは中小企業庁が定めるM&A支援機関に登録済です。中小企業庁が定める「中小M&Aガイドライン」に則り、安心して支援業務をお任せいただけます。（登録No.XXXXX）→<a href="#list">遵守事項一覧</a><br>
+		<span>1.中小企業庁M&A支援機関登録済</span>
+		ANサポーターズは中小企業庁が定めるM&A支援機関に登録済です。中小企業庁が定める「中小M&Aガイドライン」に則り、安心して支援業務をお任せいただけます。→<a href="#list">遵守事項一覧</a><br>
 		当社が事業承継に係るM&Aの支援を行う場合、中小企業庁による事業承継・引継ぎ補助金の申請を出すことが可能です。（補助金取得が保証されるものではありません。）
 	</div>
 
@@ -157,19 +186,21 @@
 			<ul class="footer__list">
 				<li><a href="top.html" class="footer__link">ホーム</a></li>
 				<li><a href="company.html" class="footer__link">会社情報</a></li>
-				<li><a class="footer__link">コンサルティング</a></li>
-				<ul class="footer__linkSub">
-					<li><a href="feature.html" class="footer__link">ANサポーターズの特長</a></li>
-					<li><a href="consultant.html" class="footer__link">コンサルタント</a></li>
-					<li><a href="support.html" class="footer__link">M&A</a></li>
-					<li><a href="branding.html" class="footer__link">ブランディング</a></li>
-					<li><a href="consultant.html" class="footer__link">コンサルタント</a></li>
-				</ul>
-				<li><a class="footer__link">セカンドキャリア養成塾</a>
+				<li><a class="footer__link">コンサルティング</a>
 					<ul class="footer__linkSub">
-						<li><a href="about.html" class="footer__link">AN BIZGYMについて</a></li>
+						<li><a href="feature.html" class="footer__link">ANサポーターズの特長</a></li>
+						<li><a href="consultant.html" class="footer__link">コンサルタント</a></li>
+						<li><a href="support.html" class="footer__link">M&A</a></li>
+						<li><a href="branding.html" class="footer__link">ブランディング</a></li>
+						<li><a href="consultant.html" class="footer__link">コンサルタント</a></li>
 					</ul>
 				</li>
+				<li><a class="footer__link">セカンドキャリア養成塾</a>
+					<ul class="footer__linkSub">
+						<li><a href="about.html" class="footer__link">ANBIZGYMについて</a></li>
+					</ul>
+				</li>
+				<li><a href="https://www.ansupporters.com/seminar" class="header__link" target="_blank">セミナー</a></li>
 				<li><a href="" class="footer__link">ブログ シニアのスキル</a></li>
 				<li><a href="contact.html" class="footer__link">お問合せ</a></li>
 			</ul>

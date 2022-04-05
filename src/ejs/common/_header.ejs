@@ -11,7 +11,36 @@
 	<meta name="robots" content="noindex">
 	<% } %>
 	<link rel="stylesheet" href="/assets/css/common.css">
-	<script type="text/javascript" src="//code.typesquare.com/static/ZDbTe4IzCko%253D/ts106f.js" charset="utf-8"></script>
+	<script>
+		(function (d) {
+			var config = {
+					kitId: 'qmu6aii',
+					scriptTimeout: 3000,
+					async: true
+				},
+				h = d.documentElement,
+				t = setTimeout(function () {
+					h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+				}, config.scriptTimeout),
+				tk = d.createElement("script"),
+				f = false,
+				s = d.getElementsByTagName("script")[0],
+				a;
+			h.className += " wf-loading";
+			tk.src = 'https://use.typekit.net/' + config.kitId + '.js';
+			tk.async = true;
+			tk.onload = tk.onreadystatechange = function () {
+				a = this.readyState;
+				if (f || a && a != "complete" && a != "loaded") return;
+				f = true;
+				clearTimeout(t);
+				try {
+					Typekit.load(config)
+				} catch (e) {}
+			};
+			s.parentNode.insertBefore(tk, s)
+		})(document);
+	</script>
 </head>
 
 <body class="page-<%= page %>">
@@ -41,7 +70,7 @@
 						</ul>
 						<li id="header__link-s"><a class="header__link">セカンドキャリア養成塾</a></li>
 						<ul class="header__linkSub2" id="header__link-s">
-							<li id="header__link-s"><a href="about.html" class="header__link">AN BIZGYMについて</a></li>
+							<li id="header__link-s"><a href="about.html" class="header__link">ANBIZGYMについて</a></li>
 						</ul>
 						<li><a href="https://www.ansupporters.com/seminar" class="header__link" target="_blank">セミナー</a></li>
 						<li><a href="https://www.anbizgym.com/blog" class="header__link">ブログ シニアのスキル</a></li>

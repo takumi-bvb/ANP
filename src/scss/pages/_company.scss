@@ -26,6 +26,8 @@
 
 		&-large {
 			font-size: 36px;
+			display: block;
+			line-height: 0.7;
 
 			@include sp {
 				font-size: 30px;
