@@ -1816,6 +1816,9 @@ ul {
     font-size: 14px;
   }
 }
+.company__info-parts {
+  font-family: "Hiragino Sans", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック", "Yu Gothic", "游ゴシック体", "YuGothic", "メイリオ", Meiryo, sans-serif;
+}
 
 hr {
   margin: 25px 0;
